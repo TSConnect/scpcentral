@@ -2,6 +2,7 @@
 const { app, BrowserWindow, Menu, dialog, ipcMain } = require('electron')
 const Notify = require('node-notifier').NotificationCenter;
 const axios = require('axios');
+const appConfig = require("./config.json")
 
 let clientKey;
 const { 
@@ -98,78 +99,51 @@ ipcMain.on("getVersion", (event) => {
   event.returnValue = `v${app.getVersion()}(${packageInfo.buildNumber})`
 })
 
-ipcMain.on("getTourDate", async (event) => {
+ipcMain.on("getCategoryFiles", async (event, cat) => {
   let config = {
-    method: "get",
-    maxBodyLength: Infinity,
-    url: `${appConfig.server_base_url}/api/v1/contents/EventDates.json`,
-    headers: {
-      "Content-Type": "application/json",
-      "clientKey": clientKey
-    },
-  };
-  
-  try{
-    let tourdate = await axios.request(config);
-
-    event.returnValue = tourdate.data.data;
-  }catch(e) {
-  }
-})
-
-ipcMain.on("getAnnouncements", async (event) => {
-  
-  let config = {
-    method: "get",
-    maxBodyLength: Infinity,
-    url: `${appConfig.server_base_url}/api/v1/contents/announcements.json`,
-    headers: {
-      "Content-Type": "application/json",
-      "clientKey": clientKey
-    },
-  };
-  try{
-    let tourdate = await axios.request(config);
-
-    event.returnValue = tourdate.data.data;
-  }catch(e) {
-  }
-})
-
-ipcMain.on("getLive", async (event) => {
-  
-  let config = {
-    method: "get",
-    maxBodyLength: Infinity,
-    url: `${appConfig.server_base_url}/api/v1/contents/livestreams.json`,
-    headers: {
-      "Content-Type": "application/json",
-      "clientKey": clientKey
-    },
-  };
-  try{
-    let tourdate = await axios.request(config);
-
-    event.returnValue = tourdate.data.data;
-  }catch(e) {
-  }
-})
-
-ipcMain.on("notify", async (event, title, message, sound, wait) => {
-  try{
-    notify(title, message, sound, wait)
-    event.returnValue = {
-      success: true
+    method: 'get',
+    url: appConfig.isDevelopment ? appConfig.devServerAddr : appConfig.serverAddr + '/files/getCat/' + cat,
+    headers: { 
+      'Content-Type': 'application/json'
     }
+  };
+  let res;
+  try{
+    res = await axios.request(config)
+    res = res.data
   }catch(e){
-    event.returnValue = {
-      success: false,
-      message: e
-    }
+    log.error(e)
   }
+  event.returnValue = res
 })
 
+ipcMain.on("mdToHTML", async (event, markdown) => {
 
+  var showdown  = require("showdown")
+  converter = new showdown.Converter(),
+  text      = markdown,
+  html      = converter.makeHtml(text);
+
+  event.returnValue = html;
+})
+
+ipcMain.on("getSpecific", async (event, fileid) => {
+  let config = {
+    method: 'get',
+    url: appConfig.isDevelopment ? appConfig.devServerAddr : appConfig.serverAddr + '/files/getSpecific/' + fileid,
+    headers: { 
+      'Content-Type': 'application/json'
+    }
+  };
+  let res;
+  try{
+    res = await axios.request(config)
+    res = res.data
+  }catch(e){
+    log.error(e)
+  }
+  event.returnValue = res
+})
 
 // Auto Updater
 
@@ -213,55 +187,6 @@ notifier.on('timeout', function (notifierObject, options) {
 
 
 // All functions
-
-/**
- * Return to the server to check that the app has notified the user
- * 
- * @param {String} clientKey the registered client key!
- * @returns {Object} object returned by the server
- */
-async function notified(clientKey){
-  let config = {
-    method: 'post',
-    maxBodyLength: Infinity,
-    url: 'https://tsconnect.taylorcentral.live/api/v1/contents/notificationCallback',
-    headers: { 
-      'clientKey': clientKey
-    }
-  };
-  
-  return (await axios.request(config)).data
-}
-
-/**
- * Send a notification
- * 
- * @param {String} title the title of the notification
- * @param {String} message the message of the notification
- * @param {boolean} sound whether or not to play a sound | default: true
- * @param {boolean} wait whether or not to wait for callback | default: true
- */
-function notify(title, message, sound=true, wait=true){
-
-  notifier.notify(
-    {
-      title: title,
-      message: message,
-      sound: sound, // Only Notification Center or Windows Toasters
-      wait: wait // Wait with callback, until user action is taken against notification, does not apply to Windows Toasters as they always wait or notify-send as it does not support the wait option
-    },
-    function (err, response, metadata) {
-      // Response is response from notification
-      // Metadata contains activationType, activationAt, deliveredAt
-      if(err == null){
-        log.info(response, metadata)
-      }else{
-        log.error(err)
-      }
-    }
-  );
-}
-
 
 /**
  * Manager menu actions
@@ -337,7 +262,7 @@ function createWindow () {
     if(mainWindow == undefined){
     // Create the browser window.
       mainWindow = new BrowserWindow({
-        title: 'TSConnect',
+        title: 'SCP Central',
         width: 950,
         height: 700,
         resizable: false,
@@ -360,7 +285,7 @@ function createWindow () {
       mainWindow.setMenu(null)
     }
 
-    // mainWindow.webContents.openDevTools()
+    mainWindow.webContents.openDevTools()
     
     mainWindow.on('close', (e) => {
       if(process.platform == 'darwin' && !mainWindow.forceClose){

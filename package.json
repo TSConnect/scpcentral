@@ -4,18 +4,18 @@
   "description": "The center of the SCP Foundation",
   "main": "main.js",
   "scripts": {
-      "dist:windows": "electron-builder --win",
-      "start": "electron .",
-      "test": "TSC_TESTING=true TSC_DEBUG=true electron .",
-      "postinstall": "electron-builder install-app-deps",
-      "pack": "electron-builder --mac --universal",
-      "dist": "electron-builder --mac --universal --publish always",
-      "publish:distDmg": "./buildAssets/publishDmg.sh",
-      "publish:dev": "./buildAssets/publishDev.sh",
-      "publish:dist": "./buildAssets/publishDist.sh",
-      "publish:win": "bash buildAssets/publishWindows.sh",
-      "prebuild": "node ./prebuild.js",
-      "buildQuestion": "node ./buildQuestion.js"
+    "dist:windows": "electron-builder --win",
+    "start": "electron .",
+    "test": "TSC_TESTING=true TSC_DEBUG=true electron .",
+    "postinstall": "electron-builder install-app-deps",
+    "pack": "electron-builder --mac --universal",
+    "dist": "electron-builder --mac --universal --publish always",
+    "publish:distDmg": "./buildAssets/publishDmg.sh",
+    "publish:dev": "./buildAssets/publishDev.sh",
+    "publish:dist": "./buildAssets/publishDist.sh",
+    "publish:win": "bash buildAssets/publishWindows.sh",
+    "prebuild": "node ./prebuild.js",
+    "buildQuestion": "node ./buildQuestion.js"
   },
   "keywords": [],
   "author": "",
@@ -25,61 +25,61 @@
     "icon": "buildAssets/logo/AppIcon.icns",
     "afterSign": "tsconnect-notarize",
     "directories": {
-        "output": "build"
+      "output": "build"
     },
     "extraFiles": [
-        "logs"
+      "logs"
     ],
     "productName": "TSConnect",
     "win": {
-        "icon": "public/assets/img/icon.ico"
+      "icon": "public/assets/img/icon.ico"
     },
     "mac": {
-        "target": [
-            "mas"
-        ],
-        "category": "public.app-category.utilities",
-        "bundleVersion": "24.0525.1",
-        "hardenedRuntime": true,
-        "entitlements": "buildAssets/entitlements.mas.plist",
-        "entitlementsInherit": "buildAssets/entitlements.mas.inherit.plist",
-        "provisioningProfile": "buildAssets/certs/scpccentral_dev.provisionprofile",
-        "gatekeeperAssess": false,
-        "asarUnpack": [],
-        "extendInfo": {
-            "ElectronTeamID": "GR73PRX6RX",
-            "LSMinimumSystemVersion": "12.0.0"
-        }
+      "target": [
+        "mas"
+      ],
+      "category": "public.app-category.utilities",
+      "bundleVersion": "24.0525.1",
+      "hardenedRuntime": true,
+      "entitlements": "buildAssets/entitlements.mas.plist",
+      "entitlementsInherit": "buildAssets/entitlements.mas.inherit.plist",
+      "provisioningProfile": "buildAssets/certs/scpccentral_dev.provisionprofile",
+      "gatekeeperAssess": false,
+      "asarUnpack": [],
+      "extendInfo": {
+        "ElectronTeamID": "GR73PRX6RX",
+        "LSMinimumSystemVersion": "12.0.0"
+      }
     },
     "mas": {
-        "type": "development",
-        "entitlements": "buildAssets/entitlements.mas.plist",
-        "entitlementsInherit": "buildAssets/entitlements.mas.inherit.plist",
-        "entitlementsLoginHelper": "buildAssets/entitlements.mas.loginhelper.plist"
+      "type": "development",
+      "entitlements": "buildAssets/entitlements.mas.plist",
+      "entitlementsInherit": "buildAssets/entitlements.mas.inherit.plist",
+      "entitlementsLoginHelper": "buildAssets/entitlements.mas.loginhelper.plist"
     },
     "dmg": {
-        "background": "buildAssets/assets/DMG_Background.tiff",
-        "icon": "buildAssets/logo/AppIcon.icns",
-        "iconSize": 100,
-        "window": {
-            "width": 544,
-            "height": 408
+      "background": "buildAssets/assets/DMG_Background.tiff",
+      "icon": "buildAssets/logo/AppIcon.icns",
+      "iconSize": 100,
+      "window": {
+        "width": 544,
+        "height": 408
+      },
+      "contents": [
+        {
+          "x": 134,
+          "y": 223
         },
-        "contents": [
-            {
-                "x": 134,
-                "y": 223
-            },
-            {
-                "x": 410,
-                "y": 223,
-                "type": "link",
-                "path": "/Applications"
-            }
-        ]
+        {
+          "x": 410,
+          "y": 223,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
     },
     "electronLanguages": [
-        "en"
+      "en"
     ]
   },
   "dependencies": {
@@ -93,11 +93,12 @@
     "macos-notification-state": "^3.0.0",
     "node-notifier": "^10.0.1",
     "prompt-sync": "^4.2.0",
+    "showdown": "^2.1.0",
     "uuid": "^9.0.1"
   },
   "devDependencies": {
-      "electron": "^29.1.5",
-      "electron-builder": "^24.12.0",
-      "tsconnect-notarize": "^1.0.6"
+    "electron": "^29.1.5",
+    "electron-builder": "^24.12.0",
+    "tsconnect-notarize": "^1.0.6"
   }
 }
