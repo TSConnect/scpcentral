@@ -16,8 +16,8 @@ window.onload = function() {
     let fileId = params.fileId;
 
     if(fileId != undefined){
-        let file = ipc.sendSync("getSpecific", fileId)
         document.getElementById(fileId).classList.add("active")
+        let file = ipc.sendSync("getSpecific", fileId)
         document.getElementById("fileName").innerText = `File Name: ${file.fileName}`
         document.getElementById("objectClass").innerText = `Object Class: ${file.fileClass}`
         document.getElementById("fileDescription").innerHTML = ipc.sendSync("mdToHTML", file.fileDescription)

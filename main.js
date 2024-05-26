@@ -285,7 +285,7 @@ function createWindow () {
       mainWindow.setMenu(null)
     }
 
-    mainWindow.webContents.openDevTools()
+    // mainWindow.webContents.openDevTools()
     
     mainWindow.on('close', (e) => {
       if(process.platform == 'darwin' && !mainWindow.forceClose){
