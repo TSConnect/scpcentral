@@ -1,0 +1,14 @@
+node_modules
+build/
+dist/
+bootstrapStudio/
+publish.sh
+publishWindows.sh
+.DS_Store
+buildAssets/certs
+private_keys/
+buildAssets/
+
+changelog.md
+.DS_Store
+logs
