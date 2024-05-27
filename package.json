@@ -1,6 +1,6 @@
 {
   "name": "scpcentral",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "The center of the SCP Foundation",
   "main": "main.js",
   "scripts": {
@@ -39,7 +39,7 @@
         "mas"
       ],
       "category": "public.app-category.utilities",
-      "bundleVersion": "24.0526.2",
+      "bundleVersion": "24.0527.1",
       "hardenedRuntime": true,
       "entitlements": "buildAssets/entitlements.mas.plist",
       "entitlementsInherit": "buildAssets/entitlements.mas.inherit.plist",
