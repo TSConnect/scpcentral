@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html data-bs-theme="light" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>SCP Central</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css">
+    <link rel="stylesheet" href="assets/css/Soft-UI-Aside-Navbar.css">
+</head>
+
+<body>
+    <div class="container" style="width: 950px;height: 700px;margin: 0px 0px;">
+        <div class="row" style="margin-top: 20px;margin-right: 0px;margin-left: 300px;">
+            <div class="col-md-6" style="width: 300px;height: 100%;">
+                <aside id="sidenav-main" class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-left ms-3">
+                    <div class="sidenav-header"><i class="fa fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute right-0 top-0 d-none d-xl-none"></i><a class="navbar-brand m-0" href=""><img class="navbar-brand-img h-100 w-15" src="assets/img/SCP%20Central.png" width="28" height="28"><span class="ms-2 font-weight-bolder">SCP Central</span></a>
+                        <hr class="horizontal dark mt-0">
+                        <div id="sidenav-collapse-main" class="collapse navbar-collapse w-auto" style="height: 550px;">
+                            <ul class="navbar-nav">
+                                <li class="nav-item"><a class="nav-link" href="index.html"><i class="fas fa-home active icon icon-shape icon-sm shadow border-radius-md text-center me-2 d-flex align-items-center justify-content-center"></i><span class="nav-link-text ms-1">Home</span></a></li>
+                                <li class="nav-item"><a class="nav-link" href="usage.html"><i class="fa fa-info icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center"></i><span class="nav-link-text ms-1">Usage Guide</span></a></li>
+                                <li class="nav-item"><a class="nav-link active" href="edits.html"><i class="fa fa-edit icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center"></i><span class="nav-link-text ms-1">Add or Make Edits</span></a></li>
+                            </ul>
+                            <ul id="anomaliesFiles" class="navbar-nav">
+                                <li class="nav-item mt-3"><span class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">SCP Anomalies</span></li>
+                                <li class="nav-item"></li>
+                            </ul>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+            <div class="col-md-6" style="width: 650px;height: 100%;">
+                <h1 id="fileName" style="margin: 0px 0px 0px;width: 550px;">Add or Edit Files</h1>
+                <h3 id="objectClass" style="margin: 0px 0px 0px;width: 550px;">Check the contribution&nbsp;<a href="#" onclick="openLink(&#39;https://docs.google.com/document/d/1iS1-zyXvq4jmNzvejSEGQzNMv5Qs5y1QpYsMVSzAz6A/edit?usp=sharing&#39;)" style="color: rgb(86,26,213);">guidelines</a>.</h3>
+                <hr style="width: 550px;height: 2px;">
+                <div id="fileDescription" style="width: 550px;">
+                    <section class="position-relative py-4 py-xl-5">
+                        <div class="container position-relative">
+                            <div class="row d-flex justify-content-center">
+                                <div class="col-md-8 col-lg-6 col-xl-5 col-xxl-4">
+                                    <div class="card mb-5">
+                                        <div class="card-body p-sm-5">
+                                            <h2 class="text-center mb-4">Contribute to SCP Central</h2>
+                                            <div class="alert alert-success visually-hidden" role="alert" id="editsAlertBox"><span id="editsAlert">text</span></div>
+                                            <form method="post" onsubmit="submitSCP(event)">
+                                                <div class="mb-3"><select class="form-select" id="editsSCP" name="FileId">
+                                                        <option value="">Select a SCP</option>
+                                                        <option value="editsAddNewSCP">Add a SCP</option>
+                                                    </select></div>
+                                                <div id="editsFileId" class="mb-3 visually-hidden"><input class="form-control" type="text" id="editsFileId-1" name="SCP ID" placeholder="SCP ID" value="scpxxxx"></div>
+                                                <div id="editsFileName" class="mb-3 visually-hidden"><input class="form-control" type="text" id="editsFileName-1" name="SCP File Name" placeholder="SCP File Name"></div>
+                                                <div class="mb-3"><input class="form-control" type="text" id="editsObjectClass" name="Object Class" placeholder="Object Class"></div>
+                                                <div class="mb-3"><textarea class="form-control" id="editsDescription" name="SCP Description (Markdown Supported)" rows="6" placeholder="SCP Description (Markdown Supported)"></textarea></div>
+                                                <div><button class="btn btn-primary d-block w-100" type="submit">Send </button></div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/showdown@2.1.0/dist/showdown.min.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>

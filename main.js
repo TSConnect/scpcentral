@@ -145,6 +145,33 @@ ipcMain.on("getSpecific", async (event, fileid) => {
   event.returnValue = res
 })
 
+ipcMain.on("AddandEdit", async (event, fileId, fileName, fileClass, fileDescription) => {
+  let data = JSON.stringify({
+    "fileId": fileId,
+    "fileName": fileName,
+    "fileClass": fileClass,
+    "fileDescription": fileDescription
+  });
+  console.log(data)
+  
+  let config = {
+    method: 'post',
+    maxBodyLength: Infinity,
+    url: appConfig.isDevelopment ? appConfig.devServerAddr : appConfig.serverAddr + '/files/new',
+    headers: { 
+      'Content-Type': 'application/json'
+    },
+    data : data
+  };
+  let res;
+  try{
+    res = (await axios.request(config)).data
+  }catch(e){
+    res = e.response.status;
+  }
+  event.returnValue = res;
+})
+
 // Auto Updater
 
 
@@ -201,10 +228,12 @@ function menuManager(type) {
   }else if(type == "debug"){
     log.info("[Debug] Opening Developer Tools.")
     mainWindow.webContents.openDevTools();
-  }else if(type == "action monitor"){
-    mainWindow.loadURL(`file://${__dirname}/public/actionMonitor.html`);
+  }else if(type == "usage guide"){
+    mainWindow.loadURL(`file://${__dirname}/public/usage.html`);
   }else if(type == "about us"){
     mainWindow.loadURL(`file://${__dirname}/public/aboutus.html`);
+  }else if(type == "scpadditionedition"){
+    mainWindow.loadURL(`file://${__dirname}/public/edits.html`);
   }
 }
 
@@ -235,16 +264,26 @@ function loadApp(){
             log.info("[SHORTCUT TRIGGERED] Navigating to Home")
             menuManager("Home")
           } },
-          {accelerator:"Alt+CommandOrControl+m", label: 'Action Monitor', click: function () { 
-            log.info("[SHORTCUT TRIGGERED] Navigating to Action Monitor")
-            menuManager("Action Monitor")
+          {accelerator:"Alt+CommandOrControl+u", label: 'Usage Guide', click: function () { 
+            log.info("[SHORTCUT TRIGGERED] Navigating to Usage Guide")
+            menuManager("Usage Guide")
           } },
-          {accelerator:"Alt+CommandOrControl+a", label: 'About Us', click: function () { 
-            log.info("[SHORTCUT TRIGGERED] Navigating to About Us")
-            menuManager("About Us")
+          {accelerator:"Alt+CommandOrControl+e", label: 'Add/Edit an SCP File', click: function () { 
+            log.info("[SHORTCUT TRIGGERED] Navigating to SCP Addition")
+            menuManager("SCPAdditionEdition")
           } }
         ]
-      }
+      },{
+        label: "Edit",
+        submenu: [
+            { label: "Undo", accelerator: "CmdOrCtrl+Z", selector: "undo:" },
+            { label: "Redo", accelerator: "Shift+CmdOrCtrl+Z", selector: "redo:" },
+            { type: "separator" },
+            { label: "Cut", accelerator: "CmdOrCtrl+X", selector: "cut:" },
+            { label: "Copy", accelerator: "CmdOrCtrl+C", selector: "copy:" },
+            { label: "Paste", accelerator: "CmdOrCtrl+V", selector: "paste:" },
+            { label: "Select All", accelerator: "CmdOrCtrl+A", selector: "selectAll:" }
+        ]}
     ]
     Menu.setApplicationMenu(Menu.buildFromTemplate(menuItems))
   }
@@ -285,7 +324,7 @@ function createWindow () {
       mainWindow.setMenu(null)
     }
 
-    // mainWindow.webContents.openDevTools()
+    mainWindow.webContents.openDevTools()
     
     mainWindow.on('close', (e) => {
       if(process.platform == 'darwin' && !mainWindow.forceClose){

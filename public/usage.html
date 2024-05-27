@@ -13,38 +13,44 @@
 </head>
 
 <body>
-    <div class="container" style="width: 300px;">
-        <aside id="sidenav-main" class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-left ms-3">
-            <div class="sidenav-header"><i class="fa fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute right-0 top-0 d-none d-xl-none"></i><a class="navbar-brand m-0" href=""><img class="navbar-brand-img h-100 w-15" src="assets/img/SCP%20Central.png" width="28" height="28"><span class="ms-2 font-weight-bolder">SCP Central</span></a>
-                <hr class="horizontal dark mt-0">
-                <div id="sidenav-collapse-main" class="collapse navbar-collapse w-auto">
-                    <ul class="navbar-nav">
-                        <li class="nav-item"><a class="nav-link" href="index.html"><i class="fas fa-home active icon icon-shape icon-sm shadow border-radius-md text-center me-2 d-flex align-items-center justify-content-center"></i><span class="nav-link-text ms-1">Home</span></a></li>
-                        <li class="nav-item"><a class="nav-link active" href="usage.html"><i class="fa fa-info icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center"></i><span class="nav-link-text ms-1">Usage Guide</span></a></li>
-                    </ul>
-                    <ul id="anomaliesFiles" class="navbar-nav">
-                        <li class="nav-item mt-3"><span class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">SCP Anomalies</span></li>
-                        <li class="nav-item"></li>
-                    </ul>
+    <div class="container" style="width: 950px;height: 700px;margin: 0px 0px;">
+        <div class="row" style="margin-top: 20px;margin-right: 0px;margin-left: 300px;">
+            <div class="col-md-6" style="width: 300px;height: 100%;">
+                <aside id="sidenav-main" class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-left ms-3">
+                    <div class="sidenav-header"><i class="fa fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute right-0 top-0 d-none d-xl-none"></i><a class="navbar-brand m-0" href=""><img class="navbar-brand-img h-100 w-15" src="assets/img/SCP%20Central.png" width="28" height="28"><span class="ms-2 font-weight-bolder">SCP Central</span></a>
+                        <hr class="horizontal dark mt-0">
+                        <div id="sidenav-collapse-main" class="collapse navbar-collapse w-auto" style="height: 550px;">
+                            <ul class="navbar-nav">
+                                <li class="nav-item"><a class="nav-link" href="index.html"><i class="fas fa-home active icon icon-shape icon-sm shadow border-radius-md text-center me-2 d-flex align-items-center justify-content-center"></i><span class="nav-link-text ms-1">Home</span></a></li>
+                                <li class="nav-item"><a class="nav-link active" href="usage.html"><i class="fa fa-info icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center"></i><span class="nav-link-text ms-1">Usage Guide</span></a></li>
+                                <li class="nav-item"><a class="nav-link" href="edits.html"><i class="fa fa-edit icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center"></i><span class="nav-link-text ms-1">Add or Make Edits</span></a></li>
+                            </ul>
+                            <ul id="anomaliesFiles" class="navbar-nav">
+                                <li class="nav-item mt-3"><span class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">SCP Anomalies</span></li>
+                                <li class="nav-item"></li>
+                            </ul>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+            <div class="col-md-6" style="width: 650px;height: 100%;">
+                <h1 id="fileName" style="margin: 0px 0px 0px;width: 550px;">Usage Guide</h1>
+                <h3 id="objectClass" style="margin: 0px 0px 0px;width: 550px;">Your best place to find all things SCP!</h3>
+                <hr style="width: 550px;height: 2px;">
+                <div id="fileDescription" style="width: 550px;">
+                    <h3 style="font-weight: bold;">Need information on an SCP?</h3>
+                    <h4>Use the side bar on the left side to select the SCP you need information on. Our database is maintained by the community, meaning everyone can make edition.</h4>
+                    <h3 style="font-weight: bold;">Is the information accurate?</h3>
+                    <h4>Every addition, deletion, or edition is moderated by the developers. Every single one of the operations stated needs to be proofread and approved by at least one developer to be published live.&nbsp;</h4>
+                    <h3 style="font-weight: bold;">Can I create my own SCP?</h3>
+                    <h4>This is planned to be an addition, but right now only confirmed SCP are allowed to be added.</h4>
+                    <h3 style="font-weight: bold;">How to read each SCP file</h3>
+                    <h4>On each SCP file page, there is a section above and below a line. The section above is basic information about the SCP (Designation, Object Class), and the section below can be edited freely by the creators.</h4>
+                    <h3 style="font-weight: bold;">What about designations under another SCP?</h3>
+                    <h4>If your scp designation is like SCPxxx-y, please include documentation on it under SCPxxx's file.</h4>
                 </div>
             </div>
-        </aside>
-    </div>
-    <div class="container" style="margin: 25px 325px;width: 625px;">
-        <h1 id="fileName" style="margin: 0px 0px 0px;">Usage Guide</h1>
-        <h3 id="objectClass" style="margin: 0px 0px 0px;">Your best place to find all things SCP!</h3>
-        <hr style="width: 550px;height: 2px;">
-        <div id="fileDescription"></div>
-        <h3 style="font-weight: bold;">Need information on an SCP?</h3>
-        <h4>Use the side bar on the left side to select the SCP you need information on. Our database is maintained by the community, meaning everyone can make edition.</h4>
-        <h3 style="font-weight: bold;">Is the information accurate?</h3>
-        <h4>Every addition, deletion, or edition is moderated by the developers. Every single one of the operations stated needs to be proofread and approved by at least one developer to be published live.&nbsp;</h4>
-        <h3 style="font-weight: bold;">Can I create my own SCP?</h3>
-        <h4>This is planned to be an addition, but right now only confirmed SCP are allowed to be added.</h4>
-        <h3 style="font-weight: bold;">How to read each SCP file</h3>
-        <h4>On each SCP file page, there is a section above and below a line. The section above is basic information about the SCP (Designation, Object Class), and the section below can be edited freely by the creators.</h4>
-        <h3 style="font-weight: bold;">What about designations under another SCP?</h3>
-        <h4>If your scp designation is like SCPxxx-y, please include documentation on it under SCPxxx's file.</h4>
+        </div>
     </div>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/showdown@2.1.0/dist/showdown.min.js"></script>

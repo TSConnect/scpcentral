@@ -30,7 +30,7 @@
     "extraFiles": [
       "logs"
     ],
-    "productName": "TSConnect",
+    "productName": "SCPCentral",
     "win": {
       "icon": "public/assets/img/icon.ico"
     },
@@ -39,11 +39,11 @@
         "mas"
       ],
       "category": "public.app-category.utilities",
-      "bundleVersion": "24.0525.1",
+      "bundleVersion": "24.0526.2",
       "hardenedRuntime": true,
       "entitlements": "buildAssets/entitlements.mas.plist",
       "entitlementsInherit": "buildAssets/entitlements.mas.inherit.plist",
-      "provisioningProfile": "buildAssets/certs/scpccentral_dev.provisionprofile",
+      "provisioningProfile": "buildAssets/certs/scpccentral_dist.provisionprofile",
       "gatekeeperAssess": false,
       "asarUnpack": [],
       "extendInfo": {
@@ -52,7 +52,7 @@
       }
     },
     "mas": {
-      "type": "development",
+      "type": "distribution",
       "entitlements": "buildAssets/entitlements.mas.plist",
       "entitlementsInherit": "buildAssets/entitlements.mas.inherit.plist",
       "entitlementsLoginHelper": "buildAssets/entitlements.mas.loginhelper.plist"
